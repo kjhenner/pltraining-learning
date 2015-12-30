@@ -94,6 +94,11 @@ class learning::quest ($git_branch='release') {
     require => Class['localrepo'],
   }
 
+  package { 'npm':
+    ensure => present,
+    requre => Class['localrepo'],
+  }
+
   package { 'graphviz':
     ensure  => present,
     require => Class['localrepo'],
