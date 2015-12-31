@@ -84,11 +84,6 @@ class learning::quest ($git_branch='release') {
     require => Package['nginx'],
   }
 
-  package { 'tmux':
-    ensure  => 'present',
-    require => Class['localrepo'],
-  }
-
   package { 'nodejs':
     ensure  => present,
     require => Class['localrepo'],
@@ -119,31 +114,10 @@ class learning::quest ($git_branch='release') {
     before  => Class['learning::graphite_reqs'],
   }
 
-  file { ['/opt/quest', '/opt/quest/bin', '/opt/quest/gems']:
-    ensure => directory,
-  }
-
-  $rake_gems = ['jekyll','redcarpet','pygments.rb']
-  $rake_gems.each |$gem| {
-    exec { "install ${gem}":
-      command => "/opt/puppetlabs/puppet/bin/gem install ${gem} -i /opt/quest/gems -n /opt/quest/bin --source https://rubygems.org/",
-      creates => "/opt/puppetlabs/puppet/bin/${gem}",
-      require => [File['/opt/quest/bin'], File['/opt/quest/gems'], Package['nodejs']],
-      before  => Exec['rake update'], 
-    }
-  }
-
-  vcsrepo { '/usr/src/courseware-lvm':
+  vcsrepo { '/usr/src/puppet-quest-guide':
     ensure   => present,
     provider => git,
-    source   => 'git://github.com/puppetlabs/courseware-lvm.git',
-  }
-
-  exec { 'rake update':
-    environment => ["GH_BRANCH=${git_branch}"],
-    command     => "/opt/puppetlabs/puppet/bin/rake update",
-    cwd         => '/usr/src/courseware-lvm/',
-    require     => Vcsrepo['/usr/src/courseware-lvm'],
+    source   => 'git://github.com/puppetlabs/puppet-quest-guide.git',
   }
 
   service { 'puppet':
