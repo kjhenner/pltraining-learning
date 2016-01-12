@@ -20,13 +20,11 @@ class learning::graphite_reqs ($pypi_dir = '/opt/pypiserver', $pypi_pkg_dir = '/
     "${pypi_root}/w/whisper/whisper-0.9.15.tar.gz"
   ]
 
-  $pip_urls.each | $url | {
-    notify { $url: }
-  }
-
   #Use our defined resource type to wget all these packages
-  learning::pypi_cached_pkg { $pip_urls:
-    require => Class['learning::pypi_server'],
+  $pip_urls.each | $url | {
+    learning::pypi_cached_pkg { $url:
+      require => Class['learning::pypi_server'],
+    }
   }
 
   # Install some Graphite dependencies with the default provider (yum)
