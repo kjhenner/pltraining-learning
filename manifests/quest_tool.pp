@@ -13,7 +13,7 @@ class learning::quest_tool {
     mode  => '0644',
   }
 
-  file { '${home}/bin':
+  file { "${home}/bin":
     ensure => 'directory',
   }
   

@@ -14,7 +14,7 @@ class learning::install {
   file { '/usr/bin/pip-python':
     ensure  => symlink,
     target  => '/usr/bin/pip',
-    require => Package['pip-python']
+    require => Package['python-pip']
   }
 
   # This class sets up a local pypi server so we can run offline
@@ -56,7 +56,7 @@ class learning::install {
     ensure => 'file',
     owner  => 'root',
     mode   => '0644',
-    source => 'puppet://modules/learning/README',
+    source => 'puppet:///modules/learning/README',
   }
 
   file { '/var/lib/hiera':

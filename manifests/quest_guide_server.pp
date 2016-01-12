@@ -17,7 +17,7 @@ class learning::quest_guide_server ($doc_root) {
     listen_port    => "${proxy_port}",
     listen_options => 'default',
     www_root       => $doc_root,
-    require        => File['doc_root'],
+    require        => File[$doc_root],
   }
 
   # Set up ~ home pages for the defined resource types quest 

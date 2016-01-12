@@ -32,7 +32,7 @@ class learning::quest_guide ($doc_root) {
   }
 
   # This builds html from the quest guide repository
-  exec { 'gitbook build':
+  exec { '/usr/bin/gitbook build':
     cwd     => $content_repo_dir,
     creates => "${content_repo_dir}/_book",
     require => [Vcsrepo[$content_repo_dir], Package['gitbook-cli']],
@@ -41,7 +41,7 @@ class learning::quest_guide ($doc_root) {
   file { "${doc_root}/quest/":
     ensure  => symlink,
     target  => "${content_repo_dir}/_book",
-    require => Exec['gitbook build'],
+    require => Exec['/usr/bin/gitbook build'],
   }
 
 }
