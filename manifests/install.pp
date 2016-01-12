@@ -48,8 +48,8 @@ class learning::install {
   }
 
   package { 'graphviz':
-    ensure => 'present',
-    requre => Class['localrepo'],
+    ensure  => 'present',
+    require => Class['localrepo'],
   }
 
   file { ['/etc/motd', '/root/README']:
