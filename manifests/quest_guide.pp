@@ -35,7 +35,7 @@ class learning::quest_guide ($doc_root) {
   exec { 'gitbook build':
     cwd     => $content_repo_dir,
     creates => "${content_repo_dir}/_book",
-    require => [Vcsrepo[$content_repo_dir], package['gitbook-cli']],
+    require => [Vcsrepo[$content_repo_dir], Package['gitbook-cli']],
   }
 
   file { "${doc_root}/quest/":
