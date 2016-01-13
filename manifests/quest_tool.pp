@@ -9,7 +9,7 @@ class learning::quest_tool {
   File {
     owner => 'root',
     group => 'root',
-    mode  => '0644',
+    mode  => '0744',
   }
 
   file { "${home}/bin":
@@ -19,6 +19,11 @@ class learning::quest_tool {
   file { "${home}/bin/quest":
     ensure => file,
     source => 'puppet:///modules/learning/quest',
+  }
+
+  file { "${home}/.testing/test.rb":
+    ensure => filem
+    source => 'puppet:///modules/learning/test.rb',
   }
 
   file { "${home}/.tmux.conf":
