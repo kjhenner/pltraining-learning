@@ -2,6 +2,8 @@ class learning::graphite_server {
 
   # Set up an apache server and vhost to serve graphite
 
+  $graph_port = '90'
+
   class { 'apache':
     default_vhost => false,
   }
