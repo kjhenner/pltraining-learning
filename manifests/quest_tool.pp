@@ -26,7 +26,7 @@ class learning::quest_tool {
   }
 
   file { "${home}/.testing/test.rb":
-    ensure => filem
+    ensure => file,
     source => 'puppet:///modules/learning/test.rb',
   }
 
