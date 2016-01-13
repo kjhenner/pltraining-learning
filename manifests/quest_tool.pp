@@ -13,12 +13,16 @@ class learning::quest_tool {
   }
 
   file { "${home}/bin":
-    ensure => 'directory',
+    ensure => directory,
   }
   
   file { "${home}/bin/quest":
     ensure => file,
     source => 'puppet:///modules/learning/quest',
+  }
+
+  file { "$[home]/.testing":
+    ensure => directory,
   }
 
   file { "${home}/.testing/test.rb":

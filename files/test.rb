@@ -71,7 +71,7 @@ if opts[:list] then
     puts questlog['current'].capitalize
   else
     puts "The following quests are available: "
-    Dir.glob('/root/.testing/spec/localhost/*_spec.rb').each do |f|
+    Dir.glob('/usr/src/puppet-quest-guide/tests/*_spec.rb').each do |f|
       puts File.basename(f).gsub('_spec.rb','').capitalize
     end
   end
@@ -90,7 +90,7 @@ end
 if opts[:start] then
   name = opts[:start].downcase
   questlog = YAML::load_file('/root/.testing/log.yml')
-  if File.exist?("/root/.testing/spec/localhost/#{name}_spec.rb") then
+  if File.exist?("/usr/src/puppet-quest-guide/tests/#{name}_spec.rb") then
     questlog['current'] = name
     File.open('/root/.testing/log.yml', 'w') { |f| f.write questlog.to_yaml }
     puts "You have started the #{name.capitalize} quest."
@@ -108,7 +108,7 @@ end
 
 
 ## Run RSpec on the policies directory
-RSpec::Core::Runner.run(["/root/.testing/spec/localhost/#{name}_spec.rb"])
+RSpec::Core::Runner.run(["/usr/src/puppe-quest-guide/tests/#{name}_spec.rb"])
 
 total = 0
 failures = []
