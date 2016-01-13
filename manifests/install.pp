@@ -7,7 +7,6 @@ class learning::install {
 
   package { 'python-pip':
     ensure => 'present',
-    require => Class['localrepo'],
   }
 
   # Symlink pip to /usr/bin/pip-python where the provider expects it
@@ -49,7 +48,6 @@ class learning::install {
 
   package { 'graphviz':
     ensure  => 'present',
-    require => Class['localrepo'],
   }
 
   file { ['/etc/motd', '/root/README']:

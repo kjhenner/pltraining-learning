@@ -4,7 +4,6 @@ class learning::quest_tool {
 
   package { 'tmux':
     ensure  => 'present',
-    require => Class['localrepo'],
   }
 
   File {

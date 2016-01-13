@@ -13,7 +13,6 @@ class learning::quest_guide ($doc_root) {
     nodejs_dev_package_ensure => 'present',
     npm_package_ensure        => 'present',
     repo_class                => '::epel',
-    require => Class['localrepo'],
   }
 
   # Install gitbook-cli
