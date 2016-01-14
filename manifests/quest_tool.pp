@@ -21,7 +21,7 @@ class learning::quest_tool {
     source => 'puppet:///modules/learning/quest',
   }
 
-  file { "$[home]/.testing":
+  file { "${home}/.testing":
     ensure => directory,
   }
 
