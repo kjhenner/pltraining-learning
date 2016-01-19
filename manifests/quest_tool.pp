@@ -12,27 +12,14 @@ class learning::quest_tool {
     mode  => '0744',
   }
 
-  file { "${home}/bin":
-    ensure => directory,
-  }
-  
-  file { "${home}/bin/quest":
-    ensure => file,
-    source => 'puppet:///modules/learning/quest',
-  }
-
-  file { "${home}/.testing":
-    ensure => directory,
-  }
-
-  file { "${home}/.testing/test.rb":
-    ensure => file,
-    source => 'puppet:///modules/learning/test.rb',
-  }
-
   file { "${home}/.tmux.conf":
     ensure => file,
     source => 'puppet:///modules/learning/tmux.conf',
+  }
+
+  package { 'quest':
+    provider => gem,
+    source   => 'http://rubygems.delivery.puppetlabs.net/',
   }
 
 }
