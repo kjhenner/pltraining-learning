@@ -19,6 +19,7 @@ class learning::quest_tool {
 
   package { 'quest':
     provider => gem,
+    gemcmd   => '/bin/gem'
     source   => 'http://rubygems.delivery.puppetlabs.net/',
   }
 

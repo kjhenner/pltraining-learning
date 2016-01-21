@@ -7,6 +7,7 @@ class learning::install {
 
   package { 'python-pip':
     ensure => 'present',
+    require => Class['epel'],
   }
 
   # Symlink pip to /usr/bin/pip-python where the provider expects it
