@@ -30,7 +30,7 @@ class learning::pypi_server ( $pypi_dir = '/opt/pypiserver', $pypi_pkg_dir = '/o
 
   file { '/root/.config/pip/pip.conf':
     ensure  => present,
-    content => pip_conf,
+    content => $pip_conf,
     require => Package['pypiserver'],
   }
   
