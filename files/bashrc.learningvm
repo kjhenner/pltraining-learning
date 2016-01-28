@@ -1,0 +1,6 @@
+export PROMPT_COMMAND='history -a; history -r'
+
+if ! [ $PACKER_BUILD == "true" ]; then
+  [[ $- != *i* ]] && exec tmux && return
+  [[ -z "$TMUX" ]] && exec tmux && exec tmux attach
+fi

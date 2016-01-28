@@ -17,6 +17,11 @@ class learning::quest_tool {
     source => 'puppet:///modules/learning/tmux.conf',
   }
 
+  file { "${home}/.bashrc.learningvm":
+    ensure => file,
+    source => 'puppet:///modules/learning/bashrc.learningvm',
+  }
+
   package { 'quest':
     provider => gem,
     source   => 'http://rubygems.delivery.puppetlabs.net/',
