@@ -28,7 +28,7 @@ class learning::pypi_server ( $pypi_dir = '/opt/pypiserver', $pypi_pkg_dir = '/o
   index-url = http://localhost:8180/simple/
   | END
 
-  file { '/root/.config/pip':
+  file { ['/root/.config','/root/.config/pip']:
     ensure => directory,
   }
 
