@@ -27,4 +27,16 @@ class learning::quest_tool {
     source   => 'http://rubygems.delivery.puppetlabs.net/',
   }
 
+  file { '/etc/systemd/system/quest.service':
+    ensure => file,
+    source => 'puppet:///modules/learning/quest.service',
+  }
+
+  service { 'quest':
+    provider => systemd,
+    ensure   => 'running,
+    enable   => true,
+    require  => [Package['quest'], File['/etc/systemd/system/quest.service']],
+  } 
+
 }
