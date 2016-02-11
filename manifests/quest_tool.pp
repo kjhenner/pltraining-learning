@@ -34,7 +34,7 @@ class learning::quest_tool {
 
   service { 'quest':
     provider => systemd,
-    ensure   => 'running,
+    ensure   => 'running',
     enable   => true,
     require  => [Package['quest'], File['/etc/systemd/system/quest.service']],
   } 
