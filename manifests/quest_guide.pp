@@ -1,4 +1,4 @@
-class learning::quest_guide ($doc_root) {
+class learning::quest_guide ($doc_root, $git_branch = 'master') {
 
   $content_repo_owner = 'puppetlabs'
   $content_repo_name  = 'puppet-quest-guide'
@@ -27,6 +27,7 @@ class learning::quest_guide ($doc_root) {
   vcsrepo { $content_repo_dir:
     ensure   => present,
     provider => git,
+    revision => $git_branch,
     source   => "git://github.com/${content_repo_owner}/${content_repo_name}.git",
   }
 
