@@ -5,7 +5,7 @@ Description=Run the quest tool service
 Type=forking
 ExecStart=/usr/local/bin/questctl start --quest_dir /usr/src/puppet-quest-guide/tests
 ExecStop=/usr/local/bin/questctl stop
-PIDfile=/var/run/quest.pid
+PIDFile=/var/run/quest.pid
 Restart=on-failure
 KillSignal=SIGINT
 
