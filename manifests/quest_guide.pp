@@ -1,12 +1,10 @@
-class learning::quest_guide ($doc_root, $git_branch = 'master') {
+class learning::quest_guide ($git_branch = 'master') {
 
   $content_repo_owner = 'puppetlabs'
   $content_repo_name  = 'puppet-quest-guide'
   $content_repo_dir   = "/usr/src/${content_repo_name}"
 
-  class { 'learning::quest_guide_server':
-    doc_root => $doc_root,
-  }
+  include learning::quest_guide_server
 
   # Nodejs and npm are required for the GitBook quest guide setup
   class { '::nodejs':
@@ -38,8 +36,10 @@ class learning::quest_guide ($doc_root, $git_branch = 'master') {
     require => [Vcsrepo[$content_repo_dir], Package['gitbook-cli']],
   }
 
-  file { "${doc_root}/quest/":
+  file { "/var/www/quest":
     ensure  => symlink,
+    owner   => 'nginx',
+    group   => 'nginx',
     target  => "${content_repo_dir}/_book",
     require => Exec['/usr/bin/gitbook build'],
   }

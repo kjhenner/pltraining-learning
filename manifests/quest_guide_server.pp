@@ -1,4 +1,4 @@
-class learning::quest_guide_server ($doc_root) {
+class learning::quest_guide_server {
   
   $proxy_port = '80'
   $graph_port = '90'
@@ -16,8 +16,8 @@ class learning::quest_guide_server ($doc_root) {
     ensure         => present,
     listen_port    => "${proxy_port}",
     listen_options => 'default',
-    www_root       => $doc_root,
-    require        => File[$doc_root],
+    www_root       => "/var/www/quest",
+    require        => File["/var/www/quest"],
   }
 
   # Set up ~ home pages for the defined resource types quest 
@@ -29,7 +29,7 @@ class learning::quest_guide_server ($doc_root) {
     autoindex      => 'on',
   }
 
-  file { $doc_root:
+  file { ["/var/www"]:
     ensure => directory,
     owner  => 'nginx',
     group  => 'nginx',
