@@ -20,7 +20,6 @@ class learning::stickler(
   package { 'stickler':
     ensure   => present,
     provider => 'gem',
-    require  => Class['::bootstrap::profile::rubygems'],
   }
   $stickler_server_hash = {
     'upstream' => 'http://rubygems.org',
